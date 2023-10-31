@@ -1,0 +1,16 @@
+add_executable(hello hello.cpp)
+add_executable(vertex_distances vertex_distances.cpp)
+add_executable(hard_edges hard_edges.cpp)
+add_executable(split_mesh split_mesh.cpp)
+add_executable(naive_subdivision naive_subdivision.cpp)
+add_executable(open_mesh open_mesh.cpp)
+
+target_link_libraries(hello  ${CMAKE_DL_LIBS} ultimaille m $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
+target_link_libraries(vertex_distances  ${CMAKE_DL_LIBS} ultimaille m $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
+target_link_libraries(hard_edges  ${CMAKE_DL_LIBS} ultimaille m $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
+target_link_libraries(split_mesh  ${CMAKE_DL_LIBS} ultimaille m $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
+target_link_libraries(naive_subdivision  ${CMAKE_DL_LIBS} ultimaille m $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
+target_link_libraries(open_mesh  ${CMAKE_DL_LIBS} ultimaille m $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
+
+configure_file(assets/catorus.geogram assets/catorus.geogram COPYONLY)
+configure_file(assets/tet_13225.geogram assets/tet_13225.geogram COPYONLY)

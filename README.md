@@ -1,6 +1,6 @@
 # Ultimaille examples
 
-Here you'll find a collection of examples of how to use the ultimaille software library.
+Here you'll find a collection of examples of how to use the ultimaille library.
 
 ## Build
 

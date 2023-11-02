@@ -9,6 +9,8 @@ using namespace UM;
 
 int main(int argc, char** argv) {
 
+    // --- LOAD ---
+
     // Get path of current executable
     std::string path = getExecutablePath();
 
@@ -16,6 +18,8 @@ int main(int argc, char** argv) {
     Triangles m;
     // Loading catorus.geogram into m
     read_by_extension(path + "/assets/catorus.geogram", m);
+
+    // --- ITERATE ---
 
     // Iterate over vertices
     std::cout << "iter over vertices: " << std::endl;

@@ -1,0 +1,28 @@
+#include "helpers.h"
+#include <ultimaille/all.h>
+
+
+using namespace UM;
+
+int main(int argc, char** argv) {
+
+    // Get path of current executable
+    std::string path = getExecutablePath();
+
+    // Declare a mesh with triangle surface
+    Triangles m;
+    // Loading catorus.geogram into m
+    read_by_extension(path + "/assets/catorus.geogram", m);
+
+    // Display the number of vertices, facets and corners
+    std::cout 
+        << "n vertices: " << m.nverts() 
+        << ", n facets: " << m.nfacets() 
+        << ", n corners: " << m.ncorners() << std::endl;
+
+    // Save mesh
+    write_by_extension(path + "/assets/catorus_cpy.obj", m);
+
+    return 0;
+}
+

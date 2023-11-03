@@ -8,6 +8,7 @@ add_executable(iterate_primitives iterate_primitives.cpp)
 add_executable(iterate_primitives_conn iterate_primitives_conn.cpp)
 add_executable(move_around_mesh move_around_mesh.cpp)
 add_executable(random_walk_faces random_walk_faces.cpp)
+add_executable(create_fill_attributes create_fill_attributes.cpp)
 
 target_link_libraries(hello  ${CMAKE_DL_LIBS} ultimaille m $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
 target_link_libraries(vertex_distances  ${CMAKE_DL_LIBS} ultimaille m $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
@@ -19,6 +20,7 @@ target_link_libraries(iterate_primitives  ${CMAKE_DL_LIBS} ultimaille m $<$<BOOL
 target_link_libraries(iterate_primitives_conn  ${CMAKE_DL_LIBS} ultimaille m $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
 target_link_libraries(move_around_mesh  ${CMAKE_DL_LIBS} ultimaille m $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
 target_link_libraries(random_walk_faces  ${CMAKE_DL_LIBS} ultimaille m $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
+target_link_libraries(create_fill_attributes  ${CMAKE_DL_LIBS} ultimaille m $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
 
 configure_file(assets/catorus.geogram assets/catorus.geogram COPYONLY)
 configure_file(assets/tet_13225.geogram assets/tet_13225.geogram COPYONLY)

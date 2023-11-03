@@ -1,5 +1,5 @@
-    /**
- * This example shows how to iterate primitives over a mesh with connectivity
+/**
+ * This example shows how to move around a mesh with connectivity
 */
 #include "helpers.h"
 #include <ultimaille/all.h>
@@ -45,7 +45,7 @@ int main(int argc, char** argv) {
         Surface::Halfedge opposite_he = f.halfedge().opposite();
         // Check if opposite halfedge is active
         // It can be unactive if halfedge is on the border for example
-        // Or if there is many opposite, in this case, the mesh is says to be non-manifold
+        // Or if there is many opposite, in this case, the mesh is said to be non-manifold
         if (!opposite_he.active())
             break;
         

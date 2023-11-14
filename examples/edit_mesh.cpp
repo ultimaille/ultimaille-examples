@@ -80,8 +80,6 @@ int main(int argc, char** argv) {
     // Remove deactivated facets
     m.compact();
 
-    // --- SAVE ---
-
     // Save cube without a face
     write_by_extension("cube_without_face.geogram", m);
 
@@ -89,8 +87,6 @@ int main(int argc, char** argv) {
 
     // Create facet (fill hole)
     m.conn.get()->create_facet({1, 5, 6, 2});
-
-    // --- SAVE ---
 
     // Save 
     write_by_extension("cube_filled.geogram", m);
@@ -103,10 +99,10 @@ int main(int argc, char** argv) {
     m.points[2] = vec3(1, -2, -1);
     m.points[3] = vec3(-1, -2, -1);
 
-    // --- SAVE ---
-
     // Save
     write_by_extension("cube_deform.geogram", m);
+
+    // --- END ---
 
     return 0;
 }

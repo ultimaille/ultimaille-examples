@@ -28,5 +28,8 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(ultimaille)
 include_directories(${ultimaille_SOURCE_DIR})
 
+# Download graphite
+# file(DOWNLOAD https://github.com/BrunoLevy/GraphiteThree/releases/download/v3-1.8.4/graphite3-1.8.5-rc-win64.zip graphite.zip)
+
 add_subdirectory(examples)
 

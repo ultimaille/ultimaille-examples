@@ -23,6 +23,7 @@ std::string getExecutablePath() {
 
 #elif _WIN32
 
+#define NOMINMAX
 #include <Windows.h>
 
 std::string getExecutablePath() {

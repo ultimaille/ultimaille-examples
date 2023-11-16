@@ -12,12 +12,12 @@ int main(int argc, char** argv) {
     // --- LOAD ---
 
     // Get path of current executable
-    std::string path = getExecutablePath();
+    std::string path = getAssetPath();
 
     // Declare a mesh with triangle surface
     Triangles m;
     // Loading catorus.geogram into m
-    read_by_extension(path + "/assets/catorus.geogram", m);
+    read_by_extension(path + "catorus.geogram", m);
 
     // --- ITERATE ---
 

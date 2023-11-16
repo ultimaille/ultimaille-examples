@@ -31,11 +31,11 @@ void split_mesh(Triangles& mesh, CornerAttribute<bool>& hardEdgeAttr, FacetAttri
 
 int main(int argc, char** argv) {
 
-    std::string path = getExecutablePath();
+    std::string path = getAssetPath();
 
     // Load mesh from file
     Triangles mesh;
-    SurfaceAttributes attr = read_by_extension(path + "/assets/tet_13225_hard_edges.geogram", mesh);
+    SurfaceAttributes attr = read_by_extension(path + "tet_13225.geogram", mesh);
     // Make connectivity
     mesh.connect();
 
@@ -47,10 +47,7 @@ int main(int argc, char** argv) {
     split_mesh(mesh, hard_edges_attr, group_attr);
 
     // Save into new file containing the hard edge into a corner attribute (hard_edge_attr)
-    std::string fullpath = path + "/assets/tet_13225_splitted.geogram";
-    write_by_extension(fullpath, mesh, {{}, {{"groups", group_attr.ptr}}, {{"hard_edges", hard_edges_attr.ptr}}});
-
-    std::cout << "Save model at " << fullpath << std::endl;
+    write_by_extension("tet_13225_splitted.geogram", mesh, {{}, {{"groups", group_attr.ptr}}, {{"hard_edges", hard_edges_attr.ptr}}});
 
     return 0;
 }

@@ -47,6 +47,6 @@ IF (NOT WIN32)
     target_link_libraries(edit_mesh m)
 ENDIF()
 
-# Copy asset files
+# Copy asset files to build directory
 configure_file(assets/catorus.geogram assets/catorus.geogram COPYONLY)
 # configure_file(assets/tet_13225.geogram assets/tet_13225.geogram COPYONLY)

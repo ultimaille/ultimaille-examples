@@ -7,12 +7,12 @@ using namespace UM;
 int main(int argc, char** argv) {
 
     // Get path of current executable
-    std::string path = getExecutablePath();
+    std::string path = getAssetPath();
 
     // Declare a mesh with triangle surface
     Triangles m;
     // Loading catorus.geogram into m
-    read_by_extension(path + "/assets/catorus.geogram", m);
+    read_by_extension(path + "catorus.geogram", m);
 
     // Display the number of vertices, facets and corners
     std::cout 
@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
         << ", n corners: " << m.ncorners() << std::endl;
 
     // Save mesh
-    write_by_extension(path + "/assets/catorus_cpy.obj", m);
+    write_by_extension("catorus_cpy.obj", m);
 
     return 0;
 }

@@ -19,6 +19,7 @@ else()
     add_compile_options(-Wall -Wextra -pedantic)
 endif()
 
+# Clone Ultimaille
 include(FetchContent)
 FetchContent_Declare(
   ultimaille
@@ -28,8 +29,13 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(ultimaille)
 include_directories(${ultimaille_SOURCE_DIR})
 
-# Download graphite
-# file(DOWNLOAD https://github.com/BrunoLevy/GraphiteThree/releases/download/v3-1.8.4/graphite3-1.8.5-rc-win64.zip graphite.zip)
+# Download Graphite
+file(DOWNLOAD https://github.com/BrunoLevy/GraphiteThree/releases/download/v3-1.8.4/graphite3-1.8.5-rc-win64.zip ${CMAKE_SOURCE_DIR}/graphite.zip)
+# Unzip Graphite
+execute_process(
+    COMMAND ${CMAKE_COMMAND} -E tar xzf ${CMAKE_SOURCE_DIR}/graphite.zip
+    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+)
 
 add_subdirectory(examples)
 

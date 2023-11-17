@@ -1,6 +1,7 @@
 /**
  * This example shows how to create tri mesh from scratch
 */
+#include "helpers.h"
 #include <ultimaille/all.h>
 
 
@@ -53,7 +54,7 @@ int main(int argc, char** argv) {
 
     #ifdef _WIN32
     // Open the generated mesh with Graphite
-    int result = system("..\\..\\GraphiteThree\\bin\\win64\\graphite.exe tri_mesh.geogram");
+    int result = system((getGraphitePath() + " tri_mesh.geogram").c_str());
     #endif
 
     return 0;

@@ -51,3 +51,16 @@ std::string getAssetPath() {
     #endif
     return path;
 }
+
+std::string getGraphitePath() {
+    std::string path = getExecutablePath();
+    #ifdef __unix__
+    path += "/../GraphiteThree/bin/win64/graphite.exe";
+    #elif _WIN32
+    // Considering user will use VS C++ on Windows,
+    // it will generate a target directory according to the config (Release, Debug, ...)
+    // We get assets on the top directory
+    path += "\\..\\..\\GraphiteThree\\bin\\win64\\graphite.exe";
+    #endif
+    return path;
+}

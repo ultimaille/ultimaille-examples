@@ -49,5 +49,12 @@ int main(int argc, char** argv) {
 
     // --- END ---
 
+    // --- RUN ---
+
+    #ifdef _WIN32
+    // Open the generated mesh with Graphite
+    int result = system("..\\..\\GraphiteThree\\bin\\win64\\graphite.exe tri_mesh.geogram");
+    #endif
+
     return 0;
 }

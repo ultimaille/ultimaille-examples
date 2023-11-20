@@ -48,6 +48,9 @@ jobs:
 
     - name: Run release
       run: build\examples\Release\create_tri_mesh.exe
+
+    - name: Run release
+      run: build\examples\Release\create_fill_attributes.exe
       
     - name: Debug build
       run: cmake --build build --parallel --config Debug

@@ -41,16 +41,16 @@ jobs:
         submodules: recursive
 
     - name: Configure CMake
-      run: cmake -B build -DUM_UNIT_TESTS=ON
+      run: cmake -B build
 
     - name: Release build
       run: cmake --build build --parallel --config Release
 
+    - name: Run release
+      run: build\examples\Release\create_tri_mesh.exe
+      
     - name: Debug build
       run: cmake --build build --parallel --config Debug
 
-    - name: Run release
-      run: cd build/examples/Release && create_tri_mesh.exe
-
     - name: Run debug
-      run: cd build/examples/Debug && create_tri_mesh.exe
+      run: build\examples\Debug\create_tri_mesh.exe

@@ -1,6 +1,8 @@
+/**
+ * This example shows how to find hard edges according to a given threshold
+*/
 #include "helpers.h"
 #include <ultimaille/all.h>
-
 
 using namespace UM;
 

@@ -30,25 +30,23 @@ void find_hard_edges(Triangles& mesh, CornerAttribute<bool>& hard_edges_attr, do
 
 }
 
-int main(int argc, char** argv) {
+int main() {
 
-    std::string path = getExecutablePath();
+    // Get assets directory path
+    std::string path = getAssetPath();
 
     // Load mesh from file
     Triangles mesh;
-    read_by_extension(path + "/assets/tet_13225.geogram", mesh);
+    read_by_extension(path + "tet_13225.geogram", mesh);
     // Make connectivity
     mesh.connect();
 
-    // Find hard edges
+    // Find hard edges and store into corner attribute
     CornerAttribute<bool> hard_edges_attr(mesh);
     find_hard_edges(mesh, hard_edges_attr, 0.1);
 
     // Save into new file containing the hard edge into a corner attribute (hard_edge_attr)
-    std::string fullpath = path + "/assets/tet_13225_hard_edges.geogram";
-    write_by_extension(fullpath, mesh, {{}, {}, {{"hard_edges", hard_edges_attr.ptr}}});
-
-    std::cout << "Save model at " << fullpath << std::endl;
+    write_by_extension("tet_13225_hard_edges.geogram", mesh, {{}, {}, {{"hard_edges", hard_edges_attr.ptr}}});
 
     return 0;
 }

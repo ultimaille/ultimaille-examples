@@ -18,7 +18,7 @@ int main() {
     // Declare a mesh with triangle surface
     Triangles m;
     // Loading catorus.geogram into m
-    read_by_extension(path + "catorus.geogram", m);
+    read_by_extension(path + "catorusio.geogram", m);
 
     // --- POINT ATTR ---
 

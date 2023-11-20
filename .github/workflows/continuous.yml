@@ -1,0 +1,56 @@
+name: Continuous
+
+on: [push]
+
+jobs:
+
+  linux-mac:
+    strategy:
+      matrix:
+        cfg: [{os: ubuntu-latest, cxx: g++-12},
+              {os: ubuntu-latest, cxx: g++-9},
+              {os: macos-latest, cxx: clang++}]
+        config: [Release, Debug]
+
+    runs-on:  ${{ matrix.cfg.os }}
+
+    env:
+      CXX: ${{ matrix.cfg.cxx }}
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: Configure CMake
+      run: cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.config }}
+
+    - name: CMake Build
+      run: cmake --build build --parallel
+
+    - name: Run
+      run: cd build/examples && ./create_tri_mesh
+
+
+  windows-msvc:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: Configure CMake
+      run: cmake -B build -DUM_UNIT_TESTS=ON
+
+    - name: Release build
+      run: cmake --build build --parallel --config Release
+
+    - name: Debug build
+      run: cmake --build build --parallel --config Debug
+
+    - name: Run release
+      run: cd build/examples/Release && create_tri_mesh.exe
+
+    - name: Run debug
+      run: cd build/examples/Debug && create_tri_mesh.exe

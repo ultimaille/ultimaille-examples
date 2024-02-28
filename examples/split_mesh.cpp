@@ -13,9 +13,6 @@ void split_mesh(Triangles& mesh, CornerAttribute<bool>& hardEdgeAttr, FacetAttri
     
     // Create DS and add facet as root elements
     DisjointSet ds(mesh.nfacets());
-    for (auto f : mesh.iter_facets()) {
-        ds.root(f);
-    }
 
     // Merge facets into DS if there is no hard edge between them
     // Therefore two merged facet belong to the same group
@@ -27,7 +24,7 @@ void split_mesh(Triangles& mesh, CornerAttribute<bool>& hardEdgeAttr, FacetAttri
     }
 
     // Get associate facet id to group id
-    std::vector setIds = mesh.facets;
+    std::vector<int> setIds;
     ds.get_sets_id(setIds);
 
     for (long unsigned int i = 0; i < setIds.size(); i++) {

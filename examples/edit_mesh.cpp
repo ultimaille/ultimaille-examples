@@ -76,7 +76,7 @@ int main(int argc, char** argv) {
     // Delete facet
     
     // Deactivate facet 5
-    m.conn.get()->active[5] = false;
+    m.conn->active[5] = false;
     // Remove deactivated facets
     m.compact();
 
@@ -86,7 +86,7 @@ int main(int argc, char** argv) {
     // --- CREATE FACET ---
 
     // Create facet (fill hole)
-    m.conn.get()->create_facet({1, 5, 6, 2});
+    m.conn->create_facet({1, 5, 6, 2});
 
     // Save 
     write_by_extension("cube_filled.geogram", m);

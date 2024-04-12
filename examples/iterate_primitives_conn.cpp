@@ -51,6 +51,22 @@ int main(int argc, char** argv) {
         }
     }
 
+    // --- GET BY ID ---
+
+    // Get a primitive by index
+
+    // Get facet 5 on mesh m
+    Surface::Facet f(m, 5);
+    std::cout << "Pos of local vertex 0 of facet 5: " << f.vertex(0).pos() << std::endl;
+    
+    // Get vertex 8 on mesh m
+    Surface::Vertex v(m, 8);
+    std::cout << "Pos of vertex 8: " << v.pos() << std::endl;
+
+    // Get halfedge 0 on mesh m
+    Surface::Halfedge h(m, 0);
+    std::cout << "Pos of start vertex of half-edge 0: " << h.from().pos() << std::endl;
+
     // --- END ---
 
     return 0;

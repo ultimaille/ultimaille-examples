@@ -18,8 +18,8 @@ void find_hard_edges(Triangles& mesh, CornerAttribute<bool>& hard_edges_attr, do
         //     continue;
 
         // Compute normals of a face and its opposite face
-        vec3 normalA = mesh.util.normal(h.facet());
-        vec3 normalB = mesh.util.normal(opposite.facet());
+        vec3 normalA = h.facet().geom<Triangle3>().normal();
+        vec3 normalB = opposite.facet().geom<Triangle3>().normal();
         // Compute the dot product of normals
         double d = normalA * normalB;
 

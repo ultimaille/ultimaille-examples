@@ -8,9 +8,9 @@ using namespace UM;
 
 int main() {
 
-	// --- CREATE QUADS ---
-
 	{
+		// --- QUAD ---
+
 		// Init a Quad mesh
 		Quads m;
 
@@ -60,9 +60,13 @@ int main() {
 			<< quad2_geo.v[2] << ", " 
 			<< quad2_geo.v[3] << "]" 
 			<< std::endl;
+
+		// --- END QUAD ---
 	}
 
 	{
+		// --- TRI ---
+
 		// Init a Tri mesh
 		Triangles m;
 
@@ -109,9 +113,13 @@ int main() {
 			<< tri2_geo.v[1] << ", " 
 			<< tri2_geo.v[2] << "]" 
 			<< std::endl;
+
+		// --- END TRI ---
 	}
 
 	{
+		// --- HEX ---
+
 		// Init a Hex mesh
 		Hexahedra m;
 		m.points.create_points(8);
@@ -162,6 +170,8 @@ int main() {
 		std::cout << " - barycenter: " << b << std::endl;
 		std::cout << " - volume: " << v << std::endl;
 		std::cout << " - scaled jacobian: " << j << std::endl;
+
+		// --- END HEX ---
 	}
 
 	// --- END ---

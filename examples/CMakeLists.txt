@@ -21,6 +21,7 @@ add_executable(edit_mesh edit_mesh.cpp)
 add_executable(algebra algebra.cpp)
 add_executable(create_volume_mesh create_volume_mesh.cpp)
 add_executable(create_polyline create_polyline.cpp)
+add_executable(primitive_geometry primitive_geometry.cpp)
 
 target_link_libraries(hello  ${CMAKE_DL_LIBS} ultimaille $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
 target_link_libraries(vertex_distances  ${CMAKE_DL_LIBS} ultimaille $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
@@ -39,6 +40,7 @@ target_link_libraries(edit_mesh ${CMAKE_DL_LIBS} ultimaille $<$<BOOL:${OpenMP_CX
 target_link_libraries(algebra ${CMAKE_DL_LIBS} ultimaille $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
 target_link_libraries(create_volume_mesh ${CMAKE_DL_LIBS} ultimaille $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
 target_link_libraries(create_polyline ${CMAKE_DL_LIBS} ultimaille $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
+target_link_libraries(primitive_geometry ${CMAKE_DL_LIBS} ultimaille $<$<BOOL:${OpenMP_CXX_FOUND}>:OpenMP::OpenMP_CXX>)
 
 IF (NOT WIN32)
 	target_link_libraries(hello m)
@@ -57,6 +59,7 @@ IF (NOT WIN32)
     target_link_libraries(create_volume_mesh m)
     target_link_libraries(quad_subdivision m)
     target_link_libraries(create_polyline m)
+    target_link_libraries(primitive_geometry m)
 ENDIF()
 
 # Copy asset files to build directory

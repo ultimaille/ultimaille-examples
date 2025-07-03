@@ -54,7 +54,7 @@ void dist_from_vertex(Triangles& mesh, Surface::Vertex& src_vertex, UM::PointAtt
     std::cout << "n iter: " << i << std::endl;
 }
 
-int main(int argc, char** argv) {
+int main() {
 
     std::string path = getAssetPath();
 
@@ -72,7 +72,7 @@ int main(int argc, char** argv) {
     dist_from_vertex(mesh, src_vertex, dist_attr); 
 
     // Save into new file containing the distance point attribute (dist_attr)
-    write_by_extension("catorus_distance.geogram", mesh, {{{"dist", dist_attr.ptr}}, {}, {}});
+    write_by_extension("catorus_distance.geogram", mesh, {{"dist", dist_attr}});
 
     return 0;
 }

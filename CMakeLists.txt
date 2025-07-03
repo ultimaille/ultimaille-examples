@@ -24,7 +24,7 @@ include(FetchContent)
 FetchContent_Declare(
   ultimaille
   GIT_REPOSITORY https://github.com/ssloy/ultimaille
-  GIT_TAG        v2.0.0
+  GIT_TAG        f785fbc
 )
 FetchContent_MakeAvailable(ultimaille)
 include_directories(${ultimaille_SOURCE_DIR})

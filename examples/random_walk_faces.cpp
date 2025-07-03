@@ -9,7 +9,7 @@
 
 using namespace UM;
 
-int main(int argc, char** argv) {
+int main() {
 
     // --- LOAD ---
 
@@ -71,7 +71,7 @@ int main(int argc, char** argv) {
 
         // Write the result in a file 
         std::string filename = "catorus_rw_" + std::to_string(i) + ".geogram";
-        write_by_extension(filename.c_str(), m, {{}, {{"fa", fa.ptr}}, {}});
+        write_by_extension(filename.c_str(), m, {{"fa", fa}});
     }
 
     // --- END ---

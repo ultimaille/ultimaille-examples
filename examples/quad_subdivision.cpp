@@ -65,7 +65,7 @@ int main(/*int argc, char** argv*/) {
     }
 
     // Save into new file
-    write_by_extension("quad_subdivision.geogram", qm, {{}, {}, {}});    
+    write_by_extension("quad_subdivision.geogram", qm);
 
     return 0;
 }

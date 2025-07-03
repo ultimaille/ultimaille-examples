@@ -7,7 +7,7 @@
 
 using namespace UM;
 
-int main(int argc, char** argv) {
+int main() {
 
     // --- LOAD ---
 
@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
     // --- SAVE ---
 
     // Save mesh
-    write_by_extension("tri_mesh.geogram", m, {{}, {}, {}});
+    write_by_extension("tri_mesh.geogram", m);
 
     // --- END ---
 

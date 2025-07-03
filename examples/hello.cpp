@@ -2,7 +2,7 @@
 
 using namespace UM;
 
-int main(int argc, char** argv) {
+int main() {
 
     // Create two vector
     vec3 a(1,2,3);

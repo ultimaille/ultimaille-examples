@@ -7,7 +7,7 @@
 
 using namespace UM;
 
-int main(int argc, char** argv) {
+int main() {
 
     // --- LOAD ---
 
@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
     // Iterate over hald-edges
     std::cout << "iter over half-edges: " << std::endl;
     for (auto he : m.iter_halfedges()) {
-        std::cout << he << std::endl;
+        std::cout << (int)he << std::endl;
     }
 
     // --- END ---

@@ -48,7 +48,7 @@ int main() {
     find_hard_edges(mesh, hard_edges_attr, 0.1);
 
     // Save into new file containing the hard edge into a corner attribute (hard_edge_attr)
-    write_by_extension("tet_13225_hard_edges.geogram", mesh, {{}, {}, {{"hard_edges", hard_edges_attr.ptr}}});
+    write_by_extension("tet_13225_hard_edges.geogram", mesh, {{"hard_edges", hard_edges_attr}});
 
     return 0;
 }

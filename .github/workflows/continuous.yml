@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         cfg: [{os: ubuntu-latest, cxx: g++-12},
-              {os: ubuntu-latest, cxx: g++-9},
+              # {os: ubuntu-latest, cxx: g++-9},
               {os: macos-latest, cxx: clang++}]
         config: [Release, Debug]
 

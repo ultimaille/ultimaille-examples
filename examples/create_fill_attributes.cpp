@@ -58,6 +58,24 @@ int main() {
 
     // TODO
 
+    // --- EDGE ATTR ---
+
+    // Load mesh
+    PolyLine p;
+    read_by_extension(path + "pyramid.geogram", p);
+
+    // Create a edge attribute
+    EdgeAttribute<int> edge_id_attr(p); 
+    // For all edge in polyline set edge attribute with edge id
+    for (auto &e : p.iter_edges()) {
+        edge_id_attr[e] = e;
+        std::cout << (int)e << std::endl;
+    }
+
+    write_by_extension("pyramid_attr.geogram", p, {{"edge_id", edge_id_attr}});
+
+    // --- END EDGE ATTR ---
+
     // --- SAVE ALL ATTRIBUTES ---
 
     // Save mesh with all previously created attributes

@@ -94,20 +94,21 @@ int main() {
     // Bind to the mesh, if bind return true, the attribute already exists: pa3 is fill with 'pa' data
     // if bind return false, the attribute does not exist: pa3 is added to the mesh and is fill with default value
     if (pa3.bind(bind_attr, attributes, m2)) {
-        std::cout << "Point attribute 'pa' exists and is bound successfully." << std::endl;
+        std::cout 
+            << "Point attribute 'pa' exists and is bound successfully." 
+            << std::endl;
     } else {
-        std::cout << "Point attribute 'pa' does not exist and was added successfully." << std::endl;
+        std::cout 
+            << "Point attribute 'pa' does not exist and was added successfully." 
+            << std::endl;
     }
 
     // Display attribute values
-    int i = 0;
-    for (auto &v : m.iter_vertices()) {
-        std::cout << pa3[v] << " ";
-        if (++i > 9) {
-            std::cout << "..." << std::endl;
-            break;
-        }
+    for (int i = 0; i < 10; i++) {
+        std::cout << pa3[m.vertex(i)] << " ";
     }
+    std::cout << "..." << std::endl;
+
 
     // --- END BIND ATTRIBUTES ---
 

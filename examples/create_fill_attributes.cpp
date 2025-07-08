@@ -19,6 +19,12 @@ int main() {
     Triangles m;
     // Loading catorus.geogram into m
     read_by_extension(path + "catorus.geogram", m);
+    m.connect();
+
+    // Declare a polyline
+    PolyLine p;
+    // Loading pyramid.geogram into p
+    read_by_extension(path + "pyramid.geogram", p);
 
     // --- POINT ATTR ---
 
@@ -34,7 +40,7 @@ int main() {
     // --- SAVE POINT ---
 
     // Save mesh with previously created attribute
-    write_by_extension("catorus_manhattan.geogram", m, {{"pa", pa}});
+    write_by_extension("catorus_manhattan_point_attr.geogram", m, {{"pa", pa}});
 
     // --- FACET ATTR ---
 
@@ -48,29 +54,26 @@ int main() {
     // --- SAVE FACET ---
 
     // Save mesh with previously created attribute
-    write_by_extension("catorus_fa.geogram", m, {{"fa", fa}});
+    write_by_extension("catorus_facet_attr.geogram", m, {{"fa", fa}});
 
     // --- CORNER ATTR ---
 
-    // TODO
+    CornerAttribute<vec2> ca(m);
 
-    // --- SAVE CORNER ---
+    for (auto &h : m.iter_halfedges())
+        ca[h] = vec2(h.from().pos().x, h.from().pos().y);
 
-    // TODO
+    write_by_extension("catorus_corner_attr.geogram", m, {{"ca", ca}});
+
+    // --- END CORNER ATTR ---
 
     // --- EDGE ATTR ---
-
-    // Load mesh
-    PolyLine p;
-    read_by_extension(path + "pyramid.geogram", p);
 
     // Create a edge attribute
     EdgeAttribute<int> edge_id_attr(p); 
     // For all edge in polyline set edge attribute with edge id
-    for (auto &e : p.iter_edges()) {
+    for (auto &e : p.iter_edges())
         edge_id_attr[e] = e;
-        std::cout << (int)e << std::endl;
-    }
 
     write_by_extension("pyramid_attr.geogram", p, {{"edge_id", edge_id_attr}});
 
@@ -79,7 +82,7 @@ int main() {
     // --- SAVE ALL ATTRIBUTES ---
 
     // Save mesh with all previously created attributes
-    write_by_extension("catorus_attr.geogram", m, {{"pa", pa}, {"fa", fa}});
+    write_by_extension("catorus_attr.geogram", m, {{"pa", pa}, {"fa", fa}, {"ca", ca}});
 
     // --- READ ATTRIBUTES ---
 
@@ -91,11 +94,12 @@ int main() {
     // Load "fa" attribute
     FacetAttribute<int> fa2("fa", attributes, m2);
     // Load "ca" attribute
-    // TODO
+    CornerAttribute<vec2> ca2("ca", attributes, m2);
 
     std::cout 
         << "PointAttribute size: " << pa2.ptr.get()->data.size() 
         << ", FacetAttribute size: " << fa2.ptr.get()->data.size() 
+        << ", CornerAttribute size: " << ca2.ptr.get()->data.size()
         << std::endl;
 
     // --- END READ ATTRIBUTES ---

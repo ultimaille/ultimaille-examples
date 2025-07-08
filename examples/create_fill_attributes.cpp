@@ -80,7 +80,36 @@ int main() {
         << ", FacetAttribute size: " << fa2.ptr.get()->data.size() 
         << std::endl;
 
-    // --- END ---
+    // --- END READ ATTRIBUTES ---
+
+    // --- BIND ATTRIBUTES ---
+
+    // Comment below and uncomment next line to see different behavior
+    const std::string bind_attr = "pa";
+    // const std::string bind_attr = "unkown_attribute";
+
+    // Create a new point attribute
+    PointAttribute<double> pa3;
+
+    // Bind to the mesh, if bind return true, the attribute already exists: pa3 is fill with 'pa' data
+    // if bind return false, the attribute does not exist: pa3 is added to the mesh and is fill with default value
+    if (pa3.bind(bind_attr, attributes, m2)) {
+        std::cout << "Point attribute 'pa' exists and is bound successfully." << std::endl;
+    } else {
+        std::cout << "Point attribute 'pa' does not exist and was added successfully." << std::endl;
+    }
+
+    // Display attribute values
+    int i = 0;
+    for (auto &v : m.iter_vertices()) {
+        std::cout << pa3[v] << " ";
+        if (++i > 9) {
+            std::cout << "..." << std::endl;
+            break;
+        }
+    }
+
+    // --- END BIND ATTRIBUTES ---
 
     return 0;
 }

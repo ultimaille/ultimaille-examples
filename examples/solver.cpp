@@ -22,10 +22,9 @@ int main() {
 	// I choose ears, muzzle and legs
 	int fix_vert[] = {1249, 2378, 485, 4095, 4034};
 	for (auto vi : fix_vert) {
-		auto v = m.vertex(vi);
-		solver.fix(v * 3 + 0, v.pos().x);
-		solver.fix(v * 3 + 1, v.pos().y);
-		solver.fix(v * 3 + 2, v.pos().z);
+		vec3 v = m.vertex(vi);
+		for (int dim = 0; dim < 3; dim++)
+			solver.fix(vi * 3 + dim, v[dim]);
 	}
 
 	for (auto &v : m.iter_vertices()) {

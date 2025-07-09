@@ -1,7 +1,6 @@
 /**
  * This example shows how to use vectors and matrices
 */
-#include "helpers.h"
 #include <ultimaille/all.h>
 
 

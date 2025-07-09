@@ -30,10 +30,8 @@ int main() {
 
 		// --- GET QUAD3 ---
 
-		// Get facet at index 0
-		auto f = Quads::Facet(m, 0);
-		// Extract quad geometry from facet f
-		auto quad_geo = f.geom<Quad3>();
+		// Get facet at index 0, and extract quad geometry from facet f through implicit cast
+		Quad3 quad_geo = Quads::Facet(m, 0);
 		// Now, we could compute some info from geometry
 		auto n = quad_geo.normal(); // Get normal of quad
 		auto b = quad_geo.bary_verts(); // Get barycenter of quad
@@ -84,10 +82,8 @@ int main() {
 
 		// --- GET TRI3 ---
 
-		// Get facet at index 0
-		auto f = Triangles::Facet(m, 0);
-		// Extract tri geometry from facet f
-		auto tri_geo = f.geom<Triangle3>();
+		// Get facet at index 0, and extract tri geometry from facet f through implicit cast
+		Triangle3 tri_geo = Triangles::Facet(m, 0);
 		// Now, we could compute some info from geometry
 		auto n = tri_geo.normal(); // Get normal of quad
 		auto b = tri_geo.bary_verts(); // Get barycenter of quad
@@ -145,10 +141,8 @@ int main() {
 		m.vert(0, 7) = 7;
 
 		// --- GET HEXAHEDRON ---
-		// Get cell at index 0
-		auto c = Hexahedra::Cell(m, 0);
-		// Extract tri geometry from facet f
-		auto hex_geo = c.geom<Hexahedron>();
+		// Get cell at index 0, and extract tri geometry from cell c through implicit cast
+		Hexahedron hex_geo = Hexahedra::Cell(m, 0);
 		// Now, we could compute some info from geometry
 		auto b = hex_geo.bary_verts(); // Get barycenter of quad
 		auto v = hex_geo.volume(); // Get volume

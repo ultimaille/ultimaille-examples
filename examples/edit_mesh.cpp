@@ -8,6 +8,8 @@ using namespace UM;
 
 int main() {
 
+    const std::string output_dir = OUTPUT_DIR;
+
     // --- CREATE ---
 
     // Init a Quad mesh
@@ -69,7 +71,7 @@ int main() {
     // --- SAVE ---
 
     // Save cube
-    write_by_extension("cube.geogram", m);
+    write_by_extension(output_dir + "cube.geogram", m);
 
     // --- DELETE FACET ---
 
@@ -81,7 +83,7 @@ int main() {
     m.compact();
 
     // Save cube without a face
-    write_by_extension("cube_without_face.geogram", m);
+    write_by_extension(output_dir + "cube_without_face.geogram", m);
 
     // --- CREATE FACET ---
 
@@ -89,7 +91,7 @@ int main() {
     m.conn->create_facet({1, 5, 6, 2});
 
     // Save 
-    write_by_extension("cube_filled.geogram", m);
+    write_by_extension(output_dir + "cube_filled.geogram", m);
 
     // --- MOVE POINT ---
 
@@ -100,7 +102,7 @@ int main() {
     m.points[3] = vec3(-1, -2, -1);
 
     // Save
-    write_by_extension("cube_deform.geogram", m);
+    write_by_extension(output_dir + "cube_deform.geogram", m);
 
     // --- END ---
 

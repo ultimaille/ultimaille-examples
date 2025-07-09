@@ -1,7 +1,6 @@
 /**
  * This example shows how to find hard edges according to a given threshold
 */
-#include "helpers.h"
 #include <ultimaille/all.h>
 
 using namespace UM;
@@ -18,8 +17,9 @@ void find_hard_edges(Triangles& mesh, CornerAttribute<bool>& hard_edges_attr, do
         //     continue;
 
         // Compute normals of a face and its opposite face
-        vec3 normalA = h.facet().geom<Triangle3>().normal();
-        vec3 normalB = opposite.facet().geom<Triangle3>().normal();
+        vec3 normalA = Triangle3(h.facet()).normal();
+        vec3 normalB = Triangle3(opposite.facet()).normal();
+
         // Compute the dot product of normals
         double d = normalA * normalB;
 
@@ -34,12 +34,12 @@ void find_hard_edges(Triangles& mesh, CornerAttribute<bool>& hard_edges_attr, do
 
 int main() {
 
-    // Get assets directory path
-    std::string path = getAssetPath();
+    const std::string input_dir = ASSETS_INPUT_DIR;
+    const std::string output_dir = OUTPUT_DIR;
 
     // Load mesh from file
     Triangles mesh;
-    read_by_extension(path + "tet_13225.geogram", mesh);
+    read_by_extension(input_dir + "tet_13225.geogram", mesh);
     // Make connectivity
     mesh.connect();
 
@@ -48,7 +48,7 @@ int main() {
     find_hard_edges(mesh, hard_edges_attr, 0.1);
 
     // Save into new file containing the hard edge into a corner attribute (hard_edge_attr)
-    write_by_extension("tet_13225_hard_edges.geogram", mesh, {{"hard_edges", hard_edges_attr}});
+    write_by_extension(output_dir + "tet_13225_hard_edges.geogram", mesh, {{"hard_edges", hard_edges_attr}});
 
     return 0;
 }

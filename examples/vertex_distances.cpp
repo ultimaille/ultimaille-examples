@@ -1,7 +1,6 @@
 /**
  * This example shows how to compute geodesic distance between a source vertex and other vertices
 */
-#include "helpers.h"
 #include <ultimaille/all.h>
 
 
@@ -56,11 +55,12 @@ void dist_from_vertex(Triangles& mesh, Surface::Vertex& src_vertex, UM::PointAtt
 
 int main() {
 
-    std::string path = getAssetPath();
+    const std::string input_dir = ASSETS_INPUT_DIR;
+    const std::string output_dir = OUTPUT_DIR;
 
     // Load mesh from file
     Triangles mesh;
-    read_by_extension(path + "catorus.geogram", mesh);
+    read_by_extension(input_dir + "catorus.geogram", mesh);
     // Make connectivity
     mesh.connect();
 
@@ -72,7 +72,7 @@ int main() {
     dist_from_vertex(mesh, src_vertex, dist_attr); 
 
     // Save into new file containing the distance point attribute (dist_attr)
-    write_by_extension("catorus_distance.geogram", mesh, {{"dist", dist_attr}});
+    write_by_extension(output_dir + "catorus_distance.geogram", mesh, {{"dist", dist_attr}});
 
     return 0;
 }

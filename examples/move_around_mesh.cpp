@@ -1,7 +1,6 @@
 /**
  * This example shows how to move around a mesh with connectivity
 */
-#include "helpers.h"
 #include <ultimaille/all.h>
 
 
@@ -12,12 +11,13 @@ int main() {
     // --- LOAD ---
 
     // Get path of current executable
-    std::string path = getAssetPath();
+    const std::string input_dir = ASSETS_INPUT_DIR;
+    const std::string output_dir = OUTPUT_DIR;
 
     // Declare a mesh with triangle surface
     Triangles m;
     // Loading catorus.geogram into m
-    read_by_extension(path + "catorus.geogram", m);
+    read_by_extension(input_dir + "catorus.geogram", m);
 
     // --- CONNECT ---
 
@@ -58,7 +58,7 @@ int main() {
 
         // Write the result in a file 
         std::string filename = "catorus_opp_" + std::to_string(i) + ".geogram";
-        write_by_extension(filename.c_str(), m, {{"fa", fa}});
+        write_by_extension(output_dir + filename.c_str(), m, {{"fa", fa}});
     }
 
     // --- END ---

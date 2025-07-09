@@ -1,7 +1,6 @@
 /**
  * This example shows how to iterate primitives over a mesh with connectivity
 */
-#include "helpers.h"
 #include <ultimaille/all.h>
 
 
@@ -12,12 +11,12 @@ int main() {
     // --- LOAD ---
 
     // Get path of current executable
-    std::string path = getAssetPath();
+    const std::string input_dir = ASSETS_INPUT_DIR;
 
     // Declare a mesh with triangle surface
     Triangles m;
     // Loading catorus.geogram into m
-    read_by_extension(path + "catorus.geogram", m);
+    read_by_extension(input_dir + "catorus.geogram", m);
 
     // --- CONNECT ---
 

@@ -1,4 +1,3 @@
-#include "helpers.h"
 #include <ultimaille/all.h>
 
 using namespace UM;
@@ -6,11 +5,12 @@ using namespace UM;
 int main(/*int argc, char** argv*/) {
 
     // Get path of current executable
-    std::string path = getAssetPath();
+    const std::string input_dir = ASSETS_INPUT_DIR;
+    const std::string ouput_dir = OUTPUT_DIR;
 
     // Open mesh
     Triangles m;
-    read_by_extension(path + "quarterdisk_tri.mesh", m);
+    read_by_extension(input_dir + "quarterdisk_tri.mesh", m);
     m.connect();
 
     // Group all half-edge with their opposite
@@ -65,7 +65,7 @@ int main(/*int argc, char** argv*/) {
     }
 
     // Save into new file
-    write_by_extension("quad_subdivision.geogram", qm);
+    write_by_extension(ouput_dir + "quad_subdivision.geogram", qm);
 
     return 0;
 }

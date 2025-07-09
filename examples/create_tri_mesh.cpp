@@ -1,13 +1,14 @@
 /**
  * This example shows how to create tri mesh from scratch
 */
-#include "helpers.h"
 #include <ultimaille/all.h>
 
 
 using namespace UM;
 
 int main() {
+
+    const std::string output_dir = OUTPUT_DIR;
 
     // --- LOAD ---
 
@@ -46,7 +47,7 @@ int main() {
     // --- SAVE ---
 
     // Save mesh
-    write_by_extension("tri_mesh.geogram", m);
+    write_by_extension(output_dir + "tri_mesh.geogram", m);
 
     // --- END ---
 
@@ -54,7 +55,8 @@ int main() {
 
     #ifdef _WIN32
     // Open the generated mesh with Graphite
-    int result = system((getGraphitePath() + " tri_mesh.geogram").c_str());
+    std::string graphite_path = GRAPHITE_PATH;
+    int result = system((graphite_path + " " + output_dir + "tri_mesh.geogram").c_str());
     #endif
 
     return 0;

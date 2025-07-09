@@ -2,7 +2,6 @@
  * This example shows how to create attributes of different type, fill them
  * save them into a mesh file and reload them from a mesh file
 */
-#include "helpers.h"
 #include <ultimaille/all.h>
 
 
@@ -10,21 +9,28 @@ using namespace UM;
 
 int main() {
 
-    // --- LOAD ---
+    const std::string input_dir = ASSETS_INPUT_DIR;
+    const std::string output_dir = OUTPUT_DIR;
 
-    // Get path of current executable
-    std::string path = getAssetPath();
+
+    // --- LOAD ---
 
     // Declare a mesh with triangle surface
     Triangles m;
     // Loading catorus.geogram into m
-    read_by_extension(path + "catorus.geogram", m);
+    read_by_extension(input_dir + "catorus.geogram", m);
+    m.connect();
+
+    // Declare a mesh with triangle surface
+    Tetrahedra t;
+    // Loading catorus.geogram into m
+    read_by_extension(input_dir + "catorus_tet.geogram", t);
     m.connect();
 
     // Declare a polyline
     PolyLine p;
     // Loading pyramid.geogram into p
-    read_by_extension(path + "pyramid.geogram", p);
+    read_by_extension(input_dir + "pyramid.geogram", p);
 
     // --- POINT ATTR ---
 
@@ -40,7 +46,7 @@ int main() {
     // --- SAVE POINT ---
 
     // Save mesh with previously created attribute
-    write_by_extension("catorus_manhattan_point_attr.geogram", m, {{"pa", pa}});
+    write_by_extension(output_dir + "catorus_manhattan_point_attr.geogram", m, {{"pa", pa}});
 
     // --- FACET ATTR ---
 
@@ -54,7 +60,7 @@ int main() {
     // --- SAVE FACET ---
 
     // Save mesh with previously created attribute
-    write_by_extension("catorus_facet_attr.geogram", m, {{"fa", fa}});
+    write_by_extension(output_dir + "catorus_facet_attr.geogram", m, {{"fa", fa}});
 
     // --- CORNER ATTR ---
 
@@ -63,7 +69,7 @@ int main() {
     for (auto &h : m.iter_halfedges())
         ca[h] = vec2(h.from().pos().x, h.from().pos().y);
 
-    write_by_extension("catorus_corner_attr.geogram", m, {{"ca", ca}});
+    write_by_extension(output_dir + "catorus_corner_attr.geogram", m, {{"ca", ca}});
 
     // --- END CORNER ATTR ---
 
@@ -75,20 +81,20 @@ int main() {
     for (auto &e : p.iter_edges())
         edge_id_attr[e] = e;
 
-    write_by_extension("pyramid_attr.geogram", p, {{"edge_id", edge_id_attr}});
+    write_by_extension(output_dir + "pyramid_attr.geogram", p, {{"edge_id", edge_id_attr}});
 
     // --- END EDGE ATTR ---
 
     // --- SAVE ALL ATTRIBUTES ---
 
     // Save mesh with all previously created attributes
-    write_by_extension("catorus_attr.geogram", m, {{"pa", pa}, {"fa", fa}, {"ca", ca}});
+    write_by_extension(output_dir + "catorus_attr.geogram", m, {{"pa", pa}, {"fa", fa}, {"ca", ca}});
 
     // --- READ ATTRIBUTES ---
 
     // Load mesh and read attributes
     Triangles m2;
-    SurfaceAttributes attributes = read_by_extension("catorus_attr.geogram", m2);
+    SurfaceAttributes attributes = read_by_extension(output_dir + "catorus_attr.geogram", m2);
     // Load "pa" attribute
     PointAttribute<double> pa2("pa", attributes, m2);
     // Load "fa" attribute

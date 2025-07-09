@@ -1,4 +1,3 @@
-#include "helpers.h"
 #include <ultimaille/all.h>
 
 
@@ -7,12 +6,13 @@ using namespace UM;
 int main() {
 
     // Get path of current executable
-    std::string path = getAssetPath();
+    const std::string input_dir = ASSETS_INPUT_DIR;
+    const std::string ouput_dir = OUTPUT_DIR;
 
     // Declare a mesh with triangle surface
     Triangles m;
     // Loading catorus.geogram into m
-    read_by_extension(path + "catorus.geogram", m);
+    read_by_extension(input_dir + "catorus.geogram", m);
 
     // Display the number of vertices, facets and corners
     std::cout 
@@ -21,7 +21,7 @@ int main() {
         << ", n corners: " << m.ncorners() << std::endl;
 
     // Save mesh
-    write_by_extension("catorus_cpy.obj", m);
+    write_by_extension(ouput_dir + "catorus_cpy.obj", m);
 
     return 0;
 }

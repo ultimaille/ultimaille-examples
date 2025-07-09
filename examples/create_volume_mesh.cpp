@@ -1,13 +1,14 @@
 /**
  * This example shows how to create tet/hex volumetric mesh from scratch
 */
-#include "helpers.h"
 #include <ultimaille/all.h>
 
 
 using namespace UM;
 
 int main() {
+
+    const std::string output_dir = OUTPUT_DIR;
 
     // --- LOAD ---
 
@@ -49,7 +50,7 @@ int main() {
     // --- SAVE ---
 
     // Save mesh
-    write_by_extension("hex_mesh.geogram", m);
+    write_by_extension(output_dir + "hex_mesh.geogram", m);
 
     // --- END ---
 
@@ -57,7 +58,7 @@ int main() {
 
     #ifdef _WIN32
     // Open the generated mesh with Graphite
-    int result = system((getGraphitePath() + " hex_mesh.geogram").c_str());
+    int result = system((std::string(GRAPHITE_PATH) + " " + output_dir + "hex_mesh.geogram").c_str());
     #endif
 
     return 0;

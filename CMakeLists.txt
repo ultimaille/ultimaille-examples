@@ -37,5 +37,7 @@ execute_process(
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
 )
 
+add_definitions(-DGRAPHITE_PATH="${CMAKE_BINARY_DIR}/GraphiteThree/bin/win64/graphite.exe")
+
 add_subdirectory(examples)
 

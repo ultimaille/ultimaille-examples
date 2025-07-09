@@ -62,8 +62,11 @@ IF (NOT WIN32)
     target_link_libraries(primitive_geometry m)
 ENDIF()
 
+set(OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/output")
+
+file(MAKE_DIRECTORY "${OUTPUT_DIR}")
+add_definitions(-DASSETS_INPUT_DIR=\"${CMAKE_CURRENT_SOURCE_DIR}/assets/\")
+add_definitions(-DOUTPUT_DIR=\"${OUTPUT_DIR}/\")
+
 # Copy asset files to build directory
-configure_file(assets/catorus.geogram assets/catorus.geogram COPYONLY)
-configure_file(assets/tet_13225.geogram assets/tet_13225.geogram COPYONLY)
-configure_file(assets/quarterdisk_tri.mesh assets/quarterdisk_tri.mesh COPYONLY)
-configure_file(assets/pyramid.geogram assets/pyramid.geogram COPYONLY)
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/assets DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

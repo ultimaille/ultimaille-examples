@@ -52,7 +52,7 @@ int main() {
     split_mesh(mesh, hard_edges_attr, group_attr);
 
     // Save into new file containing the hard edge into a corner attribute (hard_edge_attr)
-    write_by_extension(output_dir + "tet_13225_splitted.geogram", mesh, {{"groups", group_attr}, {"hard_edges", hard_edges_attr}});
+    write_by_extension(output_dir + "tet_13225_splitted.geogram", mesh, {{}, {{"groups", group_attr.ptr}}, {{"hard_edges", hard_edges_attr.ptr}}});
 
     return 0;
 }

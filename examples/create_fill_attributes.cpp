@@ -46,7 +46,7 @@ int main() {
     // --- SAVE POINT ---
 
     // Save mesh with previously created attribute
-    write_by_extension(output_dir + "catorus_manhattan_point_attr.geogram", m, {{"pa", pa}});
+    write_by_extension(output_dir + "catorus_manhattan_point_attr.geogram", m, {{{"pa", pa.ptr}}, {}, {}});
 
     // --- FACET ATTR ---
 
@@ -60,7 +60,7 @@ int main() {
     // --- SAVE FACET ---
 
     // Save mesh with previously created attribute
-    write_by_extension(output_dir + "catorus_facet_attr.geogram", m, {{"fa", fa}});
+    write_by_extension(output_dir + "catorus_facet_attr.geogram", m, {{}, {{"fa", fa.ptr}}, {}});
 
     // --- CORNER ATTR ---
 
@@ -69,7 +69,7 @@ int main() {
     for (auto &h : m.iter_halfedges())
         ca[h] = vec2(h.from().pos().x, h.from().pos().y);
 
-    write_by_extension(output_dir + "catorus_corner_attr.geogram", m, {{"ca", ca}});
+    write_by_extension(output_dir + "catorus_corner_attr.geogram", m, {{}, {}, {{"ca", ca.ptr}}});
 
     // --- END CORNER ATTR ---
 
@@ -81,14 +81,14 @@ int main() {
     for (auto &e : p.iter_edges())
         edge_id_attr[e] = e;
 
-    write_by_extension(output_dir + "pyramid_attr.geogram", p, {{"edge_id", edge_id_attr}});
+    write_by_extension(output_dir + "pyramid_attr.geogram", p, {{}, {{"edge_id", edge_id_attr.ptr}}});
 
     // --- END EDGE ATTR ---
 
     // --- SAVE ALL ATTRIBUTES ---
 
     // Save mesh with all previously created attributes
-    write_by_extension(output_dir + "catorus_attr.geogram", m, {{"pa", pa}, {"fa", fa}, {"ca", ca}});
+    write_by_extension(output_dir + "catorus_attr.geogram", m, {{{"pa", pa.ptr}}, {{"fa", fa.ptr}}, {{"ca", ca.ptr}}});
 
     // --- READ ATTRIBUTES ---
 
@@ -109,36 +109,6 @@ int main() {
         << std::endl;
 
     // --- END READ ATTRIBUTES ---
-
-    // --- BIND ATTRIBUTES ---
-
-    // Comment below and uncomment next line to see different behavior
-    const std::string bind_attr = "pa";
-    // const std::string bind_attr = "unkown_attribute";
-
-    // Create a new point attribute
-    PointAttribute<double> pa3;
-
-    // Bind to the mesh, if bind return true, the attribute already exists: pa3 is fill with 'pa' data
-    // if bind return false, the attribute does not exist: pa3 is added to the mesh and is fill with default value
-    if (pa3.bind(bind_attr, attributes, m2)) {
-        std::cout 
-            << "Point attribute 'pa' exists and is bound successfully." 
-            << std::endl;
-    } else {
-        std::cout 
-            << "Point attribute 'pa' does not exist and was added successfully." 
-            << std::endl;
-    }
-
-    // Display attribute values
-    for (int i = 0; i < 10; i++) {
-        std::cout << pa3[m.vertex(i)] << " ";
-    }
-    std::cout << "..." << std::endl;
-
-
-    // --- END BIND ATTRIBUTES ---
 
     return 0;
 }

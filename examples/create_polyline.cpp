@@ -63,7 +63,7 @@ int main() {
     // --- SAVE ---
 
     // Save mesh
-    write_by_extension(output_dir + "pyramid.geogram", p, {{"my_edge_attr", edge_attr}});
+    write_by_extension(output_dir + "pyramid.geogram", p, {{}, {{"my_edge_attr", edge_attr.ptr}}});
 
     // --- END ---
 

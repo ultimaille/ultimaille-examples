@@ -58,7 +58,7 @@ int main() {
 
         // Write the result in a file 
         std::string filename = "catorus_opp_" + std::to_string(i) + ".geogram";
-        write_by_extension(output_dir + filename.c_str(), m, {{"fa", fa}});
+        write_by_extension(output_dir + filename.c_str(), m, {{}, {{"fa", fa.ptr}}, {}});
     }
 
     // --- END ---

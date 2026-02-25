@@ -72,7 +72,7 @@ int main() {
     dist_from_vertex(mesh, src_vertex, dist_attr); 
 
     // Save into new file containing the distance point attribute (dist_attr)
-    write_by_extension(output_dir + "catorus_distance.geogram", mesh, {{"dist", dist_attr}});
+    write_by_extension(output_dir + "catorus_distance.geogram", mesh, {{{"dist", dist_attr.ptr}}, {}, {}});
 
     return 0;
 }

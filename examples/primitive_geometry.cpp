@@ -168,6 +168,52 @@ int main() {
 		// --- END HEX ---
 	}
 
+	{
+		// --- TET ---
+		
+		// Init a Tet mesh
+		Tetrahedra m;
+		m.points.create_points(4);
+		m.points[0] = {-1, 0, 0};
+		m.points[1] = {1, 0, 0};
+		m.points[2] = {0, 0, -1};
+		m.points[3] = {0, 1, 0};
+
+		// Create 1 cell
+		m.create_cells(1);
+
+		m.vert(0, 0) = 0;
+		m.vert(0, 1) = 1;
+		m.vert(0, 2) = 2;
+		m.vert(0, 3) = 3;
+
+		// --- GET TETRAHEDRON ---
+		// Get cell at index 0, and extract geometry from cell c through implicit cast
+		Tetrahedron tet_geo = Tetrahedra::Cell(m, 0);
+		// Now, we could compute some info from geometry
+		double v = tet_geo.volume();
+		vec3 b = tet_geo.bary_verts();
+		vec4 bc = tet_geo.bary_coords({0,0,0});
+		double aspect = tet_geo.aspect_ratio();
+
+		// Display
+		std::cout 
+			<< "Tet cell geometry is defined by: [" 
+			<< tet_geo.v[0] << ", " 
+			<< tet_geo.v[1] << ", " 
+			<< tet_geo.v[2] << ", " 
+			<< tet_geo.v[3] << "]" 
+			<< std::endl;
+
+		std::cout << " - volume: " << v << std::endl;
+		std::cout << " - aspect ratio: " << aspect << std::endl;
+		std::cout << " - barycenter: " << "(" << b.x << ", " << b.y << ", " << b.z << ")" << std::endl;
+		std::cout << " - bary coord at (0,0,0): " << "(" << bc[0] << ", " << bc[1] << ", " << bc[2] << ", " << bc[3]
+		 << ")" << std::endl;
+
+		// --- END TET ---
+	}
+
 	// --- END ---
 
 	return 0;
